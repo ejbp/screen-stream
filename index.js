@@ -15,6 +15,7 @@ module.exports = function (opts) {
   opts.audioRate = opts.audioRate || 44100 //44100
   opts.videoCodec = opts.videoCodec || 'libx264'
   opts.encodingFormat = opts.encodingFormat || 'matroska'
+  opts.streamToHost = opts.streamToHost || 'localhost'
 
   // Platform-specific junk
   if (os.platform() === 'linux') {
@@ -64,7 +65,7 @@ module.exports = function (opts) {
 
 
   if ( opts.encodingFormat == 'flv' ) {
-    params.push(`rtmp://localhost/live/${opts.token}`)
+    params.push(`rtmp://${opts.streamToHost}/live/${opts.token}`)
   }else {
     params.push('pipe:1'); //proc.stdout
   }
